@@ -3,7 +3,43 @@
 
 {% if user.is_authenticated %}
 
-<h1> User is auth!</h1>
+    <h1> Records ...</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Address</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Create At</th>
+            <th scope="col">ID</th>
+          </tr>
+        </thead>
+        <tbody>
+                {% if records %}
+                {% for record in records %}
+                <tr>
+                    <td>{{record.first_name}}</td>
+                    <td>{{record.last_name}}</td>
+                    <td>{{record.address}}</td>
+                    <td>{{record.phone}}</td>
+                    <td>{{record.created_at}}</td>
+                    <td><a href="{% url 'record' record.id %}">{{record.id}}</a></td>
+                </tr>
+                {% endfor %}
+                {% endif %}
+
+            </tr>
+        </tbody>
+
+    </table>
+    <!-- {% if records %}
+        {% for record in records %}
+            {{record.first_name}}
+            {{record.address}}
+            {{record.phone}}<br/>
+        {% endfor %}
+    {% endif %} -->
 
 {% else %}
 
